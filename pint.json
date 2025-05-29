@@ -1,0 +1,25 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "blank_line_before_statement": true,
+        "concat_space": {
+            "spacing": "one"
+        },
+        "method_argument_space": true,
+        "single_trait_insert_per_statement": true,
+        "types_spaces": {
+            "space": "single"
+        },
+        "global_namespace_import": {
+            "import_classes": true,
+            "import_constants": true,
+            "import_functions": true
+        },
+        "lowercase_keywords": true,
+        "no_multiple_statements_per_line": true,
+        "declare_strict_types": true,
+        "no_useless_else": true,
+        "strict_comparison": true,
+        "visibility_required": true
+    }
+}
