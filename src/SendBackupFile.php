@@ -49,7 +49,7 @@ final class SendBackupFile
             ->attach('document', file_get_contents($filePath), basename($filePath))
             ->post("https://api.telegram.org/bot{$token}/sendDocument", [
                 'chat_id' => $chatId,
-                'caption' => 'Backup of: '.basename($filePath),
+                'caption' => 'Backup of: ' . basename($filePath),
             ])
             ->throw()
             ->json();
@@ -60,7 +60,7 @@ final class SendBackupFile
      */
     private function splitAndSendFile($backupFile, int $chunkSize): ?array
     {
-        consoleOutput()->info('Backup file is too large, splitting into chunks of '.$chunkSize.' MB.');
+        consoleOutput()->info('Backup file is too large, splitting into chunks of ' . $chunkSize . ' MB.');
 
         $chunks = (new SplitLargeFile)
             ->execute($backupFile->path(), $chunkSize);
