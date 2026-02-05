@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Raziul\LaravelBackupTelegram\Tests;
+namespace Larament\BackupTelegram\Tests;
 
 use Illuminate\Console\OutputStyle;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Http;
+use Larament\BackupTelegram\BackupTelegramServiceProvider;
 use Mockery;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Raziul\LaravelBackupTelegram\LaravelBackupTelegramServiceProvider;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -18,11 +17,6 @@ class TestCase extends Orchestra
     protected function setUp(): void
     {
         parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Raziul\\LaravelBackupTelegram\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
-        );
-
         // Mock HTTP client
         Http::fake();
 
@@ -30,11 +24,11 @@ class TestCase extends Orchestra
         $this->mockConsoleOutput();
     }
 
-    protected function getPackageProviders($app)
+    protected function tearDown(): void
     {
-        return [
-            LaravelBackupTelegramServiceProvider::class,
-        ];
+        Mockery::close();
+
+        parent::tearDown();
     }
 
     public function getEnvironmentSetUp($app)
@@ -47,6 +41,13 @@ class TestCase extends Orchestra
             'chat_id' => 'test_chat_id',
             'chunk_size' => 49,
         ]);
+    }
+
+    protected function getPackageProviders($app)
+    {
+        return [
+            BackupTelegramServiceProvider::class,
+        ];
     }
 
     /**
@@ -72,12 +73,5 @@ class TestCase extends Orchestra
     protected function getConsoleOutput(): string
     {
         return $this->app->make('console.output')->getOutput()->fetch();
-    }
-
-    protected function tearDown(): void
-    {
-        Mockery::close();
-
-        parent::tearDown();
     }
 }

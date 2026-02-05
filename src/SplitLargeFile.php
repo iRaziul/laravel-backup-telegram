@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Raziul\LaravelBackupTelegram;
+namespace Larament\BackupTelegram;
 
 use RuntimeException;
 use Symfony\Component\Process\Process;

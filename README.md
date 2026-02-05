@@ -1,9 +1,9 @@
 # Laravel Backup Telegram
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/raziul/laravel-backup-telegram.svg?style=flat-square)](https://packagist.org/packages/raziul/laravel-backup-telegram)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/raziul/laravel-backup-telegram/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/raziul/laravel-backup-telegram/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/raziul/laravel-backup-telegram/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/raziul/laravel-backup-telegram/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/raziul/laravel-backup-telegram.svg?style=flat-square)](https://packagist.org/packages/raziul/laravel-backup-telegram)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/larament/laravel-backup-telegram.svg?style=flat-square)](https://packagist.org/packages/larament/laravel-backup-telegram)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/larament/laravel-backup-telegram/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/larament/laravel-backup-telegram/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/larament/laravel-backup-telegram/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/larament/laravel-backup-telegram/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/larament/laravel-backup-telegram.svg?style=flat-square)](https://packagist.org/packages/larament/laravel-backup-telegram)
 
 Easily send your Laravel application's backup files directly to a Telegram chat or channel after each successful backup. This package integrates with [spatie/laravel-backup](https://github.com/spatie/laravel-backup) to automate backup delivery and supports large file splitting for Telegram's file size limits.
 
@@ -32,7 +32,7 @@ Easily send your Laravel application's backup files directly to a Telegram chat 
 Install via Composer:
 
 ```bash
-composer require raziul/laravel-backup-telegram
+composer require larament/laravel-backup-telegram
 ```
 
 Publish the config file (recommended):
@@ -57,21 +57,21 @@ php artisan vendor:publish --tag="backup-telegram-config"
 
 ## Configuration
 
-Update your `.env` file or the published `config/backup-telegram.php`:
+Update your `.env` file or the published `config/laravel-backup-telegram.php`:
 
 ```env
-BACKUP_TELEGRAM_TOKEN=your_bot_token
+BACKUP_TELEGRAM_BOT_TOKEN=your_bot_token
 BACKUP_TELEGRAM_CHAT_ID=your_chat_id
-BACKUP_TELEGRAM_CHUNK_SIZE=49 # (optional, in MB, default: 49, max: 49)
+BACKUP_TELEGRAM_CHUNK_SIZE=40 # (optional, in MB, default: 40, max: 49)
 ```
 
-Or in `config/backup-telegram.php`:
+Or in `config/laravel-backup-telegram.php`:
 
 ```php
 return [
-    'token' => env('BACKUP_TELEGRAM_TOKEN'),
+    'token' => env('BACKUP_TELEGRAM_BOT_TOKEN'),
     'chat_id' => env('BACKUP_TELEGRAM_CHAT_ID'),
-    'chunk_size' => env('BACKUP_TELEGRAM_CHUNK_SIZE', 49), // MB
+    'chunk_size' => env('BACKUP_TELEGRAM_CHUNK_SIZE', 40), // in megabytes (max 49 MB)
 ];
 ```
 
@@ -80,7 +80,7 @@ return [
 ## How it Works
 
 -   On every successful backup (`spatie/laravel-backup` event), the package will automatically send the backup file to your configured Telegram chat/channel.
--   If the file is larger than the Telegram limit (default 49MB), it will be split and sent in parts.
+-   If the file is larger than the Telegram limit (default 40MB), it will be split and sent in parts.
 
 ---
 
@@ -98,7 +98,7 @@ php artisan backup:run
 
 ## Advanced: Handling Large Files
 
--   By default, files larger than 49MB are split into chunks and sent as multiple messages.
+-   By default, files larger than 40MB are split into chunks and sent as multiple messages.
 -   You can adjust the chunk size in your config, but it cannot exceed 49MB due to Telegram's limitations.
 
 ---

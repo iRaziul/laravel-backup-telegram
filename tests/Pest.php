@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-use Raziul\LaravelBackupTelegram\Tests\TestCase;
+use Larament\BackupTelegram\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

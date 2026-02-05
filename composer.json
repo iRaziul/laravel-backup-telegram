@@ -1,5 +1,5 @@
 {
-    "name": "raziul/laravel-backup-telegram",
+    "name": "larament/laravel-backup-telegram",
     "description": "Send your Laravel backup files to a Telegram chat or channel.",
     "keywords": [
         "laravel",
@@ -11,15 +11,14 @@
     "authors": [
         {
             "name": "Raziul Islam",
-            "email": "raziul.cse@gmail.com",
+            "email": "hello@raziul.dev",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.2",
         "illuminate/contracts": "^10.0||^11.0||^12.0",
-        "spatie/laravel-backup": "^9.3",
-        "spatie/laravel-package-tools": "^1.16"
+        "spatie/laravel-backup": "^9.3"
     },
     "require-dev": {
         "laravel/pint": "^1.14",
@@ -31,13 +30,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Raziul\\LaravelBackupTelegram\\": "src/",
-            "Raziul\\LaravelBackupTelegram\\Database\\Factories\\": "database/factories/"
+            "Larament\\BackupTelegram\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Raziul\\LaravelBackupTelegram\\Tests\\": "tests/",
+            "Larament\\BackupTelegram\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -59,11 +57,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Raziul\\LaravelBackupTelegram\\LaravelBackupTelegramServiceProvider"
-            ],
-            "aliases": {
-                "LaravelBackupTelegram": "Raziul\\LaravelBackupTelegram\\Facades\\LaravelBackupTelegram"
-            }
+                "Larament\\BackupTelegram\\BackupTelegramServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
