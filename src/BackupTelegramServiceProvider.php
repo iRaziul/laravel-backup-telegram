@@ -13,7 +13,7 @@ class BackupTelegramServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/../config/backup-telegram.php' => config_path('backup-telegram.php'),
+            __DIR__ . '/../config/backup-telegram.php' => config_path('backup-telegram.php'),
         ], 'backup-telegram-config');
 
         Event::listen(BackupWasSuccessful::class, SendBackupFile::class);
@@ -22,7 +22,8 @@ class BackupTelegramServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/backup-telegram.php', 'backup-telegram'
+            __DIR__ . '/../config/backup-telegram.php',
+            'backup-telegram'
         );
     }
 }
