@@ -57,7 +57,7 @@ php artisan vendor:publish --tag="backup-telegram-config"
 
 ## Configuration
 
-Update your `.env` file or the published `config/laravel-backup-telegram.php`:
+Update your `.env` file or the published `config/backup-telegram.php`:
 
 ```env
 BACKUP_TELEGRAM_BOT_TOKEN=your_bot_token
@@ -65,7 +65,7 @@ BACKUP_TELEGRAM_CHAT_ID=your_chat_id
 BACKUP_TELEGRAM_CHUNK_SIZE=40 # (optional, in MB, default: 40, max: 49)
 ```
 
-Or in `config/laravel-backup-telegram.php`:
+Or in `config/backup-telegram.php`:
 
 ```php
 return [
