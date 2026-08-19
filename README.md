@@ -1,8 +1,8 @@
 # Laravel Backup Telegram
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/larament/laravel-backup-telegram.svg?style=flat-square)](https://packagist.org/packages/larament/laravel-backup-telegram)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/larament/laravel-backup-telegram/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/larament/laravel-backup-telegram/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/larament/laravel-backup-telegram/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/larament/laravel-backup-telegram/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/iRaziul/laravel-backup-telegram/run-tests.yml?branch=2.x&label=tests&style=flat-square)](https://github.com/iRaziul/laravel-backup-telegram/actions?query=workflow%3Arun-tests+branch%3A2.x)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/iRaziul/laravel-backup-telegram/fix-php-code-style-issues.yml?branch=2.x&label=code%20style&style=flat-square)](https://github.com/iRaziul/laravel-backup-telegram/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3A2.x)
 [![Total Downloads](https://img.shields.io/packagist/dt/larament/laravel-backup-telegram.svg?style=flat-square)](https://packagist.org/packages/larament/laravel-backup-telegram)
 
 Easily send your Laravel application's backup files directly to a Telegram chat or channel after each successful backup. This package integrates with [spatie/laravel-backup](https://github.com/spatie/laravel-backup) to automate backup delivery and supports large file splitting for Telegram's file size limits.
