@@ -43,6 +43,34 @@ it('logs error if backup file does not exist', function () {
     $this->backup->shouldNotReceive('disk');
 });
 
+it('handles spatie/laravel-backup v10 BackupWasSuccessful event with diskName and backupName', function () {
+    $event = new BackupWasSuccessful(diskName: 'local', backupName: 'Laravel');
+
+    Storage::disk('local')->put('Laravel/2026-08-19-backup.zip', 'dummy backup content');
+
+    Http::fake([
+        'api.telegram.org/*' => Http::response(['ok' => true]),
+    ]);
+
+    (new SendBackupFile)->handle($event);
+
+    Http::assertSent(function ($request) {
+        return $request->url() === 'https://api.telegram.org/bottest_token/sendDocument' &&
+               $request->isMultipart() &&
+               str_contains($request->body(), 'name="chat_id"') &&
+               str_contains($request->body(), 'test_chat_id') &&
+               $request->hasFile('document', 'dummy backup content', '2026-08-19-backup.zip');
+    });
+});
+
+it('handles case when no backup is found on destination', function () {
+    $event = new BackupWasSuccessful(diskName: 'local', backupName: 'NonExistent');
+
+    (new SendBackupFile)->handle($event);
+
+    Http::assertNothingSent();
+});
+
 it('sends small file successfully', function () {
     $this->backup->shouldReceive('exists')->andReturn(true);
     $this->backup->shouldReceive('sizeInBytes')->andReturn(1024); // 1KB
@@ -58,9 +86,6 @@ it('sends small file successfully', function () {
     (new SendBackupFile)->handle($this->event);
 
     Http::assertSent(function ($request) {
-        // Debugging the request data if needed
-        // dump($request->data());
-
         return $request->url() === 'https://api.telegram.org/bottest_token/sendDocument' &&
                $request->isMultipart() &&
                str_contains($request->body(), 'name="chat_id"') &&

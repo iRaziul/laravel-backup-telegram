@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-backup-telegram` will be documented in this file.
 
+## v3.0.0 - Spatie Laravel Backup v10 Compatibility - 2026-08-19
+
+🚀 Added
+
+- Added support for `spatie/laravel-backup` v10 (resolving backup destinations from primitive event properties `$diskName` and `$backupName`).
+- Maintained backwards compatibility with `spatie/laravel-backup` v9.
+
+🔄 Changed
+
+- Updated `composer.json` constraint for `spatie/laravel-backup` to `^10.0`.
+- Updated dev dependencies to support Pest `^3.0||^4.0`.
+- Updated GitHub Actions CI test matrix.
+
 ## v2.0.0 - Package Rebranding & Modernization - 2026-02-05
 
 ⚠️ Breaking Changes

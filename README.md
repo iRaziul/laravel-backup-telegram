@@ -22,8 +22,15 @@ Easily send your Laravel application's backup files directly to a Telegram chat 
 
 -   PHP 8.2+
 -   Laravel 10, 11, or 12
--   [spatie/laravel-backup](https://github.com/spatie/laravel-backup) v9.3+
+-   [spatie/laravel-backup](https://github.com/spatie/laravel-backup) v10.0+ (for v3.x) or v9.3+ (for v2.x)
 -   A Telegram bot and a chat/channel to receive backups
+
+### Compatibility
+
+| Package Version | PHP Version | Laravel Version | spatie/laravel-backup |
+|---|---|---|---|
+| `3.x` | `^8.2 \|\| ^8.3 \|\| ^8.4` | `10.x`, `11.x`, `12.x` | `^10.0` |
+| `2.x` | `^8.2 \|\| ^8.3` | `10.x`, `11.x` | `^9.3` |
 
 ---
 

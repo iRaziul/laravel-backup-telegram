@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Larament\BackupTelegram;
 
 use Illuminate\Support\Facades\Http;
+use Spatie\Backup\BackupDestination\BackupDestination;
 use Spatie\Backup\Events\BackupWasSuccessful;
 
 use function Laravel\Prompts\error;
@@ -14,9 +15,13 @@ final class SendBackupFile
 {
     public function handle(BackupWasSuccessful $event): void
     {
-        $backup = $event->backupDestination->newestBackup();
+        $backupDestination = property_exists($event, 'backupDestination')
+            ? $event->backupDestination
+            : BackupDestination::create($event->diskName, $event->backupName);
 
-        if (! $backup->exists()) {
+        $backup = $backupDestination?->newestBackup();
+
+        if (! $backup || ! $backup->exists()) {
             error('Backup file does not exist.');
 
             return;
