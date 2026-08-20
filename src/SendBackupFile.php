@@ -59,7 +59,6 @@ final class SendBackupFile
                 'chat_id' => $chatId,
                 'caption' => 'Backup of: ' . basename($filePath),
             ])
-            ->throw()
             ->json();
     }
 

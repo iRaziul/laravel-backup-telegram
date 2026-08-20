@@ -12,6 +12,12 @@ class BackupTelegramServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Commands\InstallCommand::class,
+            ]);
+        }
+
         $this->publishes([
             __DIR__ . '/../config/backup-telegram.php' => config_path('backup-telegram.php'),
         ], 'backup-telegram-config');

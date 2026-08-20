@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Larament\BackupTelegram\Tests;
 
 use Illuminate\Console\OutputStyle;
-use Illuminate\Support\Facades\Http;
 use Larament\BackupTelegram\BackupTelegramServiceProvider;
 use Mockery;
 use Orchestra\Testbench\TestCase as Orchestra;
@@ -17,8 +16,6 @@ class TestCase extends Orchestra
     protected function setUp(): void
     {
         parent::setUp();
-        // Mock HTTP client
-        Http::fake();
 
         // Mock console output
         $this->mockConsoleOutput();

@@ -34,37 +34,37 @@ Easily send your Laravel application's backup files directly to a Telegram chat 
 
 ---
 
-## Installation
+## Installation & Quick Setup
 
-Install via Composer:
+1. Install via Composer:
 
 ```bash
 composer require larament/laravel-backup-telegram
 ```
 
-Publish the config file (recommended):
+2. Run the interactive setup command:
+
+```bash
+php artisan backup-telegram:install
+```
+
+The CLI wizard will:
+- Ask for your **Bot Token** (from [@BotFather](https://t.me/BotFather)) and verify it with Telegram.
+- Auto-detect your **Chat / Channel ID** directly from recent Telegram updates (or prompt for manual input).
+- Automatically save the credentials to your `.env` file.
+- Send an optional test message to verify the connection.
+
+---
+
+## Manual Configuration (Optional)
+
+If you prefer to configure manually or publish the config file:
 
 ```bash
 php artisan vendor:publish --tag="backup-telegram-config"
 ```
 
----
-
-## Telegram Setup
-
-1. **Create a Telegram Bot:**
-    - Talk to [@BotFather](https://t.me/BotFather) on Telegram and create a new bot. Copy the API token.
-2. **Add Bot to Your Chat or Channel:**
-    - For a private chat, start a conversation with your bot.
-    - For a channel, add your bot as an administrator.
-3. **Get the Chat ID:**
-    - Use [@userinfobot](https://t.me/userinfobot) or [getIDs bot](https://t.me/getidsbot) to find your chat or channel ID.
-
----
-
-## Configuration
-
-Update your `.env` file or the published `config/backup-telegram.php`:
+Update your `.env` file:
 
 ```env
 BACKUP_TELEGRAM_BOT_TOKEN=your_bot_token
