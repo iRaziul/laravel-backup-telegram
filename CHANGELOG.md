@@ -2,6 +2,22 @@
 
 All notable changes to `laravel-backup-telegram` will be documented in this file.
 
+## v3.1.0 - 2026-08-20
+
+### 🚀 Added
+
+- Added `php artisan backup-telegram:install` interactive setup wizard powered by Laravel Prompts (`intro`, `outro`, `spin`, `note`, `table`, `confirm`, `select`).
+- Added automated Telegram bot token validation via `/getMe`.
+- Added Telegram chat and channel ID auto-discovery from `/getUpdates`.
+- Added automated `.env` updating for `BACKUP_TELEGRAM_BOT_TOKEN` and `BACKUP_TELEGRAM_CHAT_ID`.
+- Added optional test notification delivery to verify connections immediately.
+- Added interactive GitHub repository star prompt.
+- Added comprehensive test suite for the installation command.
+
+### 🐛 Fixed
+
+- Improved Telegram API error handling in `SendBackupFile` to prevent uncaught `RequestException` crashes.
+
 ## v3.0.0 - Spatie Laravel Backup v10 Compatibility - 2026-08-19
 
 🚀 Added
